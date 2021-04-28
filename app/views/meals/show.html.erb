@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+
+<div id="mealsContainer">
+  
+  <h1><%= @meal.mealName %></h1>
+
+  <%= image_tag @meal.image_url, :class => "welcomeIm" %>
+  
+  <h2><%= @meal.description %></h2>
+    
+  <div class="mealhols">
+  
+    <p>
+      Price: <%= number_to_currency(@meal.price, :unit => "€") %>
+      <br>
+      Category: <%= @meal.category %>
+      <br>
+      Allergens: <%= @meal.mealAllergens %>
+    </p>
+  
+    To do Meal Count:<%= @meal.orderCount %>
+
+    <p>
+      <%= link_to 'Back', meals_path, :class => "button", :role => "button" %>
+      <%= link_to 'Edit', edit_meal_path(@meal), :class => "button", :role => "button" %> |
+
+    </p>
+  
+  </div>
+
+</div>

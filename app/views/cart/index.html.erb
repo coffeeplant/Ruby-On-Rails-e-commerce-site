@@ -1,0 +1,49 @@
+<% if @cart.empty? %>
+<p>You have not added any items yet</p>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<div id="mealsContainer">
+    <table id="customers">
+        
+        <tr>
+            <th>Image</th>
+            <th>Meal</th>
+            <!--<th>Less / More</th>-->
+            <th>Remove</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Item Total</th>
+        </tr>
+        <% total = 0 %> 
+        <% @cart.each do |id, quantity| %>
+        <% meal = Meal.find_by_id(id) %>
+        <tr>
+            <td>
+                <div class="image">
+                    <%= link_to (image_tag meal.image_url, :style =>"height:40px"), meal %>
+                </div>
+            </td>
+            
+            <td class="mealName"><% link_to meal.mealName, meal %></td>
+            <td><a href="#">Remove From Cart</a></td>
+            <td class="price"><% number_to_currency(quantity* meal.price, :unit =>"€") %></td>
+            <td class = "quantity"><%= quantity %></td>
+
+            
+        </tr>
+        
+        <tr>
+            <% total += quantity * meal.price %>
+        </tr>
+        
+        <% end %>
+        
+        <tr>
+            Grand Total: <%= number_to_currency(total, :unit =>"€") %>
+        </tr>
+        
+    </table>
+
+</div>

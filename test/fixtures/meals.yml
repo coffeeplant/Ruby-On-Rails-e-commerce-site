@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mealName: MyString
+  description: MyText
+  image_url: MyString
+  category: MyString
+  mealAllergens: MyString
+  price: 9.99
+  orderCount: 1
+
+two:
+  mealName: MyString
+  description: MyText
+  image_url: MyString
+  category: MyString
+  mealAllergens: MyString
+  price: 9.99
+  orderCount: 1
