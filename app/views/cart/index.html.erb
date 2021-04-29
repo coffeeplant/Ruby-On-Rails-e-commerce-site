@@ -1,5 +1,5 @@
 <% if @cart.empty? %>
-<p>You have not added any items yet</p>
+<h1>Your cart is empty</h1>
 <% end %>
 
 <p id="notice"><%= notice %></p>
@@ -10,7 +10,7 @@
         <tr>
             <th>Image</th>
             <th>Meal</th>
-            <!--<th>Less / More</th>-->
+            <th>Less / More</th>
             <th>Remove</th>
             <th>Price</th>
             <th>Qty</th>
@@ -18,6 +18,7 @@
         </tr>
         <% total = 0 %> 
         <% @cart.each do |id, quantity| %>
+        
         <% meal = Meal.find_by_id(id) %>
         <tr>
             <td>
@@ -26,24 +27,30 @@
                 </div>
             </td>
             
-            <td class="mealName"><% link_to meal.mealName, meal %></td>
-            <td><a href="#">Remove From Cart</a></td>
-            <td class="price"><% number_to_currency(quantity* meal.price, :unit =>"€") %></td>
+            <td class="mealName"><%= link_to meal.mealName, meal %></td>
+            <td><a href="/cart/decrease/<%= meal.id %>">Decrease</a></td>
+            <td><a href="/cart/remove/<%= meal.id %>">Remove From Cart</a></td>
+            <td class="price"><%= number_to_currency(meal.price, :unit =>"€") %></td>
             <td class = "quantity"><%= quantity %></td>
-
+            <td class="price"><%= number_to_currency(quantity * meal.price, :unit =>"€") %></td>
             
         </tr>
         
         <tr>
             <% total += quantity * meal.price %>
+        <% end %>
         </tr>
         
-        <% end %>
-        
         <tr>
-            Grand Total: <%= number_to_currency(total, :unit =>"€") %>
+            <td>Grand Total: <%= number_to_currency(total, :unit =>"€") %></td>
         </tr>
         
     </table>
+    
+    <p>
+        <a href="/meals" class="button">Continue Shopping</a>
+        <a href="/clearcart" class="button">Empty Cart</a>
+    </p>
+    
 
 </div>
