@@ -59,6 +59,39 @@ class CartController < ApplicationController
     redirect_to:action => :index
   end
   
+  def createOrder
+    # Get the current user
+    @user = User.find(current_user.id)
+    
+    #create new order and associate it with the current user
+    @order = @user.orders.build(:order_date => DateTime.now, :status => 'Pending')
+    @order.save
+    
+    #For each meal in the cart, create a new item on the order
+    @cart = session[:cart] || {} #get the content of the Cart
+   
+    @cart.each do | id, quantity |
+      meal = Meal.find_by_id(id)
+    
+    @orderitem = @order.orderitems.build(
+      :item_id => meal.id,
+      :mealName => meal.mealName, 
+      :description => meal.description,
+      :quantity => quantity,
+      :price=> meal.price)
+      
+    @orderitem.save
+    
+    end
+    
+    @orders = Order.all
+    
+    #can modify this to allow orders that are not paid for, find the order by id in this case
+    @orderitems = Orderitem.where(order_id: Order.last)
+    
+    session[:cart] =nil
+  end
+  
   
 end
 

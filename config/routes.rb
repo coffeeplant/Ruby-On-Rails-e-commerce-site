@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
+  resources :orders do
+    resources:orderitems
+  end 
+  
+  devise_for :users do
+    resources :orders
+  end
+  
+  get '/paid/:id' => 'static_pages#paid'
+
+  
+  get '/checkout' => 'cart#createOrder'
+
   get 'cart/index'
 
   resources :meals
