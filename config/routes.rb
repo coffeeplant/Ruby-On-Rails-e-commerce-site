@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   
   get 'category/:title', to: 'static_pages#category'
   
+  post '/search' => 'meals#search'
+  
   root :to => 'site#home'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

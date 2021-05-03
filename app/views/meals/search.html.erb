@@ -1,0 +1,37 @@
+<h2>You Searched Our Product Catalog For <%= @search_term %></h2>
+
+<% if @meals.length ==0 %>
+    <br />
+    <h2>No products were found to match your search</h2>
+    <% end %>
+    
+<table class="catalog">
+    <% @meals.each do |meal| %>
+        <tr>
+            <td>
+                <div class="image">
+                    <%= link_to (image_tag meal.image_url, :style => "height:100px"), meal%>
+
+                </div>
+                <div class="title">
+                    <%= link_to meal.mealName, meal %>
+                </div>
+                <div class"description">
+                    <%= meal.description %>
+                </div>
+                <div class="price">
+                    <%= number_to_currency(meal.price, :unit => "€") %>
+                </div>
+                <div class="links">
+                    <% if user_signed_in? %>
+                        <%= link_to 'Edit', edit_meal_path(meal) %>
+                        <%= link_to 'Destroy' , meal, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% else %>
+                    
+                    <a href="/cart/<%=meal.id %>">Add to Cart</a>
+                    <% end %>
+                </div>
+            </td>
+        </tr>
+    <% end %>
+</table>

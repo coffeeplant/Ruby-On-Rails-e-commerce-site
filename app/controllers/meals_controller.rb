@@ -55,6 +55,11 @@ class MealsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def search
+    st = "%#{params[:q]}%"
+    @meals = Meal.where("mealName like ?", st)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
