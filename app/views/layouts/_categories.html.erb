@@ -6,5 +6,8 @@
             <p><%= category.title %></p>
             <%= link_to (image_tag category.image, :class=>"mealsholsIm"), category %>
             <p><%= category.description%></p>
+            <p>
+                <a href="/category/<%= category.title %>" class="button"><%= category.title %></a>
+            </p>
         </div>
     <% end %>

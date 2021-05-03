@@ -23,4 +23,9 @@ class StaticPagesController < ApplicationController
   #   @order.update_attribute(:status, "Paid by User:#{current_user.email}")
   #   #"Paid By User:#{current_user.id}#(current_user.name}#{current_user.surname}")
   # end
+  
+  def category
+    catName = params[:title]
+    @meals = Meal.where("category like ?", catName)
+  end
 end

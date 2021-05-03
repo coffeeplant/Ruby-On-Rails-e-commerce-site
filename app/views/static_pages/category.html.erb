@@ -1,0 +1,39 @@
+<p id ="notice"><%= notice %></p>
+
+<div id="itemsContainer">
+    
+    <h1>Meals</h1>
+    
+    <% if @meals.length == 0 %>
+        <br />
+        <h2>There are currently no products in this category</h2>
+    <% end %>
+    
+    <% @meals.each do |meal| %>
+    <div class = "itemhols">
+        <h1><% meal.mealName %></h1>
+        <%= link_to (image_tag meal.image_url, :class=>"mealsholsIm"), meal %>
+
+        <p>
+            <%= meal.description %>
+        </p>
+        <p>
+            <%= meal.price %>
+            <br>
+            <%= meal.category %>
+            <br>
+            <% meal.mealAllergens %>
+        </p>
+        <p>
+            <a href="/cart<%= meal.id %>"class="button">Add to Cart</a>
+            <%= link_to 'Show', meal, :class=>"button", :role=>"button"%>
+            
+            <% if session[:login]==1%>
+            <%= link_to 'Edit', edit_meal_path(meal), :class =>"button", :role=>"button" %>
+            <%= link_to 'Destroy', meal, method: :delete, data: {confirm: 'Are you sure?'}, :class=>"button", :role=>"button"%>
+            
+            <% end %>
+        </p>
+    </div>
+    <% end %>
+</div>

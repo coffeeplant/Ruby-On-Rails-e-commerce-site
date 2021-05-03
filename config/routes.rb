@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get '/cart/remove/:id' => 'cart#remove'
   get '/cart/decrease/:id' => 'cart#decrease'
   
+  get 'category/:title', to: 'static_pages#category'
+  
   root :to => 'site#home'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
