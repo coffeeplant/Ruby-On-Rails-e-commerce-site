@@ -58,7 +58,7 @@ class MealsController < ApplicationController
   
   def search
     st = "%#{params[:q]}%"
-    @meals = Meal.where("mealName like ?", st)
+    @meals = Meal.where("mealName like ? or description like ? ", st, st)
   end
 
   private

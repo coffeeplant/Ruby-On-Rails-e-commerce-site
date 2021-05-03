@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get '/help' => 'static_pages#help'
   get '/about' => 'static_pages#about'
   
+  get '/thankyou/:id' => 'static_pages#thankYou'
+  
   get '/login' => 'user#login'
   get '/logout' => 'user#logout'
   
@@ -37,6 +39,8 @@ Rails.application.routes.draw do
   post '/search' => 'meals#search'
   
   root :to => 'site#home'
+  
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

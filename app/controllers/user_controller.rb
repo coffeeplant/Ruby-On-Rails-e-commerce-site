@@ -11,7 +11,7 @@ class UserController < ApplicationController
         session[:login] = nil
         session[:cart] = nil
         flash[:notice] = "Ok then see you next time!"
-        redirect_to :controller => :items
+        redirect_to :controller => :meals
     end
     
 end

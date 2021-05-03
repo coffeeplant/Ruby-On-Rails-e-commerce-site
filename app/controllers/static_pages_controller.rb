@@ -28,4 +28,10 @@ class StaticPagesController < ApplicationController
     catName = params[:title]
     @meals = Meal.where("category like ?", catName)
   end
+  
+  def thankYou
+    @order = Order.find(params[:id])
+    @order.update_attribute(:status, "Paid with Paypal")
+  end
+  
 end
