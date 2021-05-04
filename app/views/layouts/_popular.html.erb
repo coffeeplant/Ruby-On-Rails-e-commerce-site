@@ -1,5 +1,6 @@
 <h2>Popular Products</h2>
 <table class="catalog">
+    <!-- need to cahnge this to highest number of orders -→
     <% @meals.limit(3).order(:id).each do |meal| %>
         <tr>
             <td>

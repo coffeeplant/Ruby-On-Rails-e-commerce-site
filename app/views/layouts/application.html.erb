@@ -21,7 +21,7 @@
 
 <footer class="foot">
 
-<% if session[:login] ==1 %>
+<% if current_user.admin? %>
   <%= link_to 'New Category', new_category_path, :class=>"button", :role=>"button" %>
   <%= link_to 'New Meal', new_meal_path, :class=>"button", :role=>"button" %>
 <% end %>
