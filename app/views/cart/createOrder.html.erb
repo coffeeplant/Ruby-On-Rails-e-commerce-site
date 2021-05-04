@@ -2,7 +2,7 @@
     <h1>
         Thank You
         <br>
-        You have just placed an order<%= @order.id%>
+        You have just placed an order <%= @order.id%>
     </h1>
 
 <div id="itemsContainer">
@@ -49,11 +49,11 @@
                 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                     <input type="hidden" name="cmd" value="_xclick">
                     <input type="hidden" name="business" value="sb-vjigi6111969@business.example.com">
-                    <input type="hidden" name="item_name" value="ShrewdFewd Order Number <%= @orderNum %>">
+                    <input type="hidden" name="item_name" value="ShrewdFewd Order Number  <%= @order.id %>">
                     <input type="hidden" name="currency_code" value="EUR">
                     <input type="hidden" name="amount" value="<%= @overall %>">
                     <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-                    <input type="hidden" name="return" value="https://a2f753af818d4f18ae6791b887821af9.vfs.cloud9.us-east-1.amazonaws.com/thankyou/?order=<%= @orderNum %> >
+                    <input type="hidden" name="return" value="https://a2f753af818d4f18ae6791b887821af9.vfs.cloud9.us-east-1.amazonaws.com/thankyou/<%= @order.id %>" >
                 </form>
 
                 <h2>

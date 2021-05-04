@@ -20,9 +20,11 @@
     </div>
 
 <footer class="foot">
-  
-<%= link_to 'New Category', new_category_path, :class=>"button", :role=>"button" %>
-<%= link_to 'New Meal', new_meal_path, :class=>"button", :role=>"button" %>
+
+<% if session[:login] ==1 %>
+  <%= link_to 'New Category', new_category_path, :class=>"button", :role=>"button" %>
+  <%= link_to 'New Meal', new_meal_path, :class=>"button", :role=>"button" %>
+<% end %>
 
 </footer>
 
