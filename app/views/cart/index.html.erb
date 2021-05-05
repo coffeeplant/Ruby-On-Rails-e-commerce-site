@@ -38,6 +38,8 @@
         
         <tr>
             <% total += quantity * meal.price %>
+            
+            <% session[:cartTotal] = total %>
         <% end %>
         </tr>
         

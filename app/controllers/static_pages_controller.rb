@@ -5,14 +5,40 @@ class StaticPagesController < ApplicationController
   def home
     @categories = Category.all
     @meals = Meal.all
-    current_user.update_attribute :admin, true
+    
   end
 
   def help
-
+    #current_user.update_attribute :admin, true
+            # session[:cart] = nil
+      # if current_user.admin?
+      # else
+      #   redirect_to "/"
+      # end
+      #   @users = User.all
   end
 
   def about
+  end
+  
+  def allusers
+     if current_user.admin?
+    else
+      redirect_to "/"
+    end
+      @users = User.all
+  end
+  
+  def upgrade
+    @user = User.find_by(id: params[:id])
+     @user.update_attribute(:admin, true)
+     redirect_to "/allusers"
+  end
+  
+  def downgrade
+    @user = User.find_by(id: params[:id])
+    @user.update_attribute(:admin, false)
+    redirect_to "/allusers"
   end
   
   def paid

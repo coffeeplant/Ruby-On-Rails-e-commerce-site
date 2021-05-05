@@ -22,10 +22,14 @@ Rails.application.routes.draw do
   
   get '/help' => 'static_pages#help'
   get '/about' => 'static_pages#about'
+  get '/allusers' => 'static_pages#allusers'
+
 
   
   get '/login' => 'user#login'
   get '/logout' => 'user#logout'
+  get '/upgrade/:id' => 'static_pages#upgrade'
+  get '/downgrade/:id' => 'static_pages#downgrade'
   
   get '/clearcart', to: 'cart#clearCart'
   get '/cart' => 'cart#index'
