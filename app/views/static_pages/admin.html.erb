@@ -1,0 +1,10 @@
+<% provide(:title, "Admin") %>
+<p id="notice"><%= notice %></p>
+
+<h1>Admin Section</h1>
+
+<%= link_to 'New Order', new_order_path, :class=>"button", :role=>"button"%>
+<%= link_to 'All Users', '/allusers', :class=>"button", :role=>"button" %>
+<%= link_to 'All Orders', '/adminorders', :class=>"button", :role=>"button" %>
+<%= link_to 'New Category', new_category_path, :class=>"button", :role=>"button" %>
+<%= link_to 'New Meal', new_meal_path, :class=>"button", :role=>"button" %>

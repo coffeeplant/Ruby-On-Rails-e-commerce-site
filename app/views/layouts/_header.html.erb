@@ -1,20 +1,20 @@
 <header class="headSec">
-    <h1>Liam’s Golf Store</h1>
+    <h1>ShrewdFewd</h1>
     <ul>
         <li><%= link_to "Home",  "/" %></li>
         <li><%= link_to "Meals",  "/meals" %></li>
         <li><%= link_to "About", '/about' %></li>
-        <li><%= link_to "Help", '/help' %></li>
-        <li><%= link_to "Admin", '/help' %></li>
-        <li><%= link_to "Contact", '/help' %></li>
-        <li><%= link_to "View Cart", '/cart' %></li>
-        <li><a href="/cart"><%= session[:cartTotal]%></a></li>
+        <li><%= link_to "Contact", '/contact' %></li>
 
-        
         <% if user_signed_in? %>
             <li><a href="#">Hi <%= current_user.email %></a></li>
+            <li><%= link_to "Cart", '/cart' %></li>
+            <li><a href="/cart"><%= session[:cartTotal]%></a></li>
             <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
             <li><%= link_to "View Orders", orders_path %></li>
+            <% if current_user&.admin? %>
+            <li><%= link_to 'Admin', '/admin' %></li>
+            <% end %>
             <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
 
         <% else %>
@@ -24,11 +24,11 @@
 
         <% end %>
         
-        <% if session[:login] ==1 %>
-            <li><%= link_to "Admin Log Out", logout_path %></li>
-        <% else %>
-            <li><%= link_to "Admin Login", login_path %></li>
-        <% end %>
+        <!--<% if session[:login] ==1 %>-->
+        <!--    <li><%= link_to "Admin Log Out", logout_path %></li>-->
+        <!--<% else %>-->
+        <!--    <li><%= link_to "Admin Login", login_path %></li>-->
+        <!--<% end %>-->
         
     </ul>
 </header>

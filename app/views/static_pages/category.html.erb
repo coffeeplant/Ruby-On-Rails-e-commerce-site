@@ -1,6 +1,7 @@
+<% provide(:title, "Categories") %>
 <p id ="notice"><%= notice %></p>
 
-<div id="itemsContainer">
+<div id="mealsContainer">
     
     <h1>Meals</h1>
     
@@ -10,7 +11,7 @@
     <% end %>
     
     <% @meals.each do |meal| %>
-    <div class = "itemhols">
+    <div class = "mealhols">
         <h1><% meal.mealName %></h1>
         <%= link_to (image_tag meal.image_url, :class=>"mealsholsIm"), meal %>
 

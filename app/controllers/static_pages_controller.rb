@@ -1,11 +1,8 @@
 class StaticPagesController < ApplicationController
-  
 
-    
   def home
     @categories = Category.all
     @meals = Meal.all
-    
   end
 
   def help
@@ -20,15 +17,38 @@ class StaticPagesController < ApplicationController
 
   def about
   end
-  
-  def allusers
-     if current_user.admin?
+
+  def admin
+    if current_user&.admin?
+    
     else
       redirect_to "/"
     end
-      @users = User.all
+    @orders = Order.all
+  end 
+  
+  def adminorders
+    if current_user&.admin?
+    
+    else
+      redirect_to "/"
+    end
+    @orders = Order.all
+  end 
+  
+  def allusers
+    if current_user&.admin?
+    
+    else
+      redirect_to "/"
+    end
+    
+    @users = User.all
   end
   
+  def contact
+  end
+
   def upgrade
     @user = User.find_by(id: params[:id])
      @user.update_attribute(:admin, true)

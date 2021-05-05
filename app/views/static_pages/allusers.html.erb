@@ -1,17 +1,22 @@
-<% if current_user.admin? %>
-    <div class="mainCont">
+<% provide(:title, "All Users") %>
+    <div>
     <h1>Hello, here are all the users</h1>
-        <% @users.each do |user| %>
-            <div class="mealhols">
-                <h1>User Id: <%= user.id %></h1>
-                <h1>Email: <%= user.email %></h1>
-                <h1>Role: <%= user.admin %></h1>
-                <p>
-                    <!-- put in jquery 'Are you Sure?' -->
-                    <a href="/upgrade/<%= user.id %>"class="button">Make <%= user.email %> Admin</a>
-                    <a href="/downgrade/<%= user.id %>"class="button">Remove <%= user.email %> as Admin</a>
-                </p>
-            </div>
-        <% end %>
+        <table>
+            <tr>
+                <td>User Id</td>
+                <td>Email</td>
+                <td>Role</td>
+            </tr>
+            <% @users.each do |user| %>
+                <tr>
+                    <td><%= user.id %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.admin %></td>
+                        <!-- put in jquery 'Are you Sure?' -->
+                    <td><a href="/upgrade/<%= user.id %>"class="button">Make <%= user.email %> Admin</a></td>
+                    <td><a href="/downgrade/<%= user.id %>"class="button">Remove <%= user.email %> as Admin</a></td>
+              
+                </tr>
+            <% end %>
+        </table>
     </div>
-<% end %>

@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   
   get '/paid/:id' => 'static_pages#paid'
 
-  
   get '/checkout' => 'cart#createOrder'
 
   get 'cart/index'
@@ -22,7 +21,10 @@ Rails.application.routes.draw do
   
   get '/help' => 'static_pages#help'
   get '/about' => 'static_pages#about'
+  get '/admin' => 'static_pages#admin'
+  get '/contact' => 'static_pages#contact'
   get '/allusers' => 'static_pages#allusers'
+  get '/adminorders' => 'static_pages#adminorders'
 
 
   
