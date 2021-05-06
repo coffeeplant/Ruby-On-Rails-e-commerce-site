@@ -70,28 +70,44 @@ class CartController < ApplicationController
     #For each meal in the cart, create a new item on the order
     @cart = session[:cart] || {} #get the content of the Cart
    
-    @cart.each do | id, quantity |
-      meal = Meal.find_by_id(id)
-    
-    @orderitem = @order.orderitems.build(
-      :item_id => meal.id,
-      :mealName => meal.mealName, 
-      :description => meal.description,
-      :quantity => quantity,
-      :price=> meal.price)
+      @cart.each do | id, quantity |
+        meal = Meal.find_by_id(id)
+        # meal = @meal
+        # meal.orderCount = meal.orderCount + 1
+        # meal.save
+
+     #@user.update_attribute(:admin, true)
+        
+        @orderitem = @order.orderitems.build(
+          :item_id => meal.id,
+          :mealName => meal.mealName, 
+          :description => meal.description,
+          :quantity => quantity,
+          :price=> meal.price)
+        
+        @orderitem.save
       
-    @orderitem.save
-    
-    end
+      end
     
     @orders = Order.all
     
     #can modify this to allow orders that are not paid for, find the order by id in this case
     @orderitems = Orderitem.where(order_id: Order.last)
-    
+    #redirect_to '/ordercomplete'
     session[:cart] =nil
+
   end
   
+
+  #redirect_to :action => :done
   
+  def ordercomplete
+     #
+      
+    @order = Order.limit(1).order(id: :desc).where(user: User.find(current_user.id))
+     @orderitems = Orderitem.where(order_id: Order.limit(1).order(id: :desc).where(user: User.find(current_user.id)))
+     
+    #Permission.find_by(user_id: params[:user_id], project_id: params[:project_id])
+    end
 end
 

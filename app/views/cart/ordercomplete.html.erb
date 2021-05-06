@@ -1,37 +1,20 @@
+<div id="mealsContainer">
+    <h1>Thank You<br>
+You have just placed an order <%= @order. %></h1>
+</div>
 
-    <h1>
-        Thank You
-        <br>
-        You have just placed an order <%= @order.id%>
-    </h1>
-
-<div id="itemsContainer">
-    <!--<table id="customers">-->
-    <!--    <tr>-->
-            <!--displays on ly latest order from list of orders-->
-    <!--        <%#@orders.limit(1).order(id :desc).each do |order| %>-->
-    
-    <!--        <td>-->
-    <!--            Order references for the order you just placed <%#= order.id %>-->
-    <!--        <%#end %>-->
-    <!--        </td>-->
-    <!--    </tr>-->
-    <!--</table>-->
-    
-    <table id="customers">
-        <% @total = 0 %>
-        <% @orderitems.each do |id, quantity| %>
-        <tr>
-            <% meal = Orderitem.find_by_id(id) %>
-            
-            <td><%= meal.mealName %></td>
-            <td><%= meal.quantity %></td>
-            <td><%= number_to_currency(meal.price, :unit => "€") %></td>
-            <td><%= meal.type%></td>
-            <td><%= number_to_currency(meal.quantity * meal.price, :unit => "€") %></td>
-        </tr>
-        <tr>
-            <% meal.%>
+<table id="customers">
+     <% @total = 0 %>
+    <% @orderitems.each do |id,quantity| %>
+      <tr>
+        <% meal = Orderitem.find_by_id(id) %>
+       
+        <td><%= meal.mealName %></td>
+        <td><%= meal.quantity %></td>
+        <td><%=number_to_currency(meal.price, :unit => "€")%></td> 
+        <td><%= number_to_currency(meal.quantity * meal.price, :unit => "€") %></td>
+       </tr>
+       
             <% runningTotal = (meal.quantity * meal.price)%>
             
             <% @total += runningTotal %>
@@ -63,5 +46,3 @@
             </td>
         </tr>
     </table>
-
-</div>

@@ -1,0 +1,50 @@
+<% provide(:title, "Profile Page") %>
+    <div>
+    <h1>Your Profile</h1>
+
+
+<p><%= link_to 'Edit Login Details', edit_user_registration_path, :class=>"button", :role=>"button" %></p>
+
+<%= render 'form', user: @user %>
+
+</table>
+<td>Name</td>
+<td>Address</td>
+<td>Phone</td>
+
+</tr>
+
+    <tr>
+
+        <td><%= @user.name %></td>
+        <td><%= @user.address %></td>
+        <td><%= @user.phone %></td>
+
+    </tr>
+
+        
+<h2>Preferences</h2>
+
+    <td><%= @user.prefs %></td>
+
+<p><td><a href="/prefmeat/<%= @user.id %>"class="button">Meat</a></td></p>
+<p><td><a href="/prefvegetarian/<%= @user.id %>"class="button">Vegetarian</a></td></p>
+<p><td><a href="/prefvegan/<%= @user.id %>"class="button">Vegan</a></td></p>
+
+<!--<td><a href="/upgrade/<#%= user.id %>"class="button">Make <#%= user.email %> Admin</a></td>-->
+    </div>
+
+<h2>Allergens</h2>
+
+    <td><%= @user.allergen %></td>
+
+<p><td><a href="/allergenwheat/<%= @user.id %>"class="button">Wheat</a></td></p>
+<p><td><a href="/allergennut/<%= @user.id %>"class="button">Nuts</a></td></p>
+<p><td><a href="/allergenegg/<%= @user.id %>"class="button">Eggs</a></td></p>
+
+<!--<td><a href="/upgrade/<#%= user.id %>"class="button">Make <#%= user.email %> Admin</a></td>-->
+    </div>
+    
+    
+  
+

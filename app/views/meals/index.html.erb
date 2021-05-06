@@ -18,15 +18,13 @@
         </p>
         <p>
             <%= link_to 'Show', meal, :class => "button", :role => "button" %>
-        
-            <% if session[:login] ==1 %>
+            <a href="/cart/<%= meal.id %>" class="button">Add To Cart</a>
+        </p>
+        <p>
+            <% if current_user&.admin %>
                 <%= link_to 'Edit', edit_meal_path(meal), :class => "button", :role => "button" %>
                 <%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button", :role => "button" %>
             <% end %>
-            
-
-                <a href="/cart/<%= meal.id %>" class="button">Add To Cart</a>
-
         </p>
     
     </div>

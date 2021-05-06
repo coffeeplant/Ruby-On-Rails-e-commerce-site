@@ -10,7 +10,7 @@
             <li><a href="#">Hi <%= current_user.email %></a></li>
             <li><%= link_to "Cart", '/cart' %></li>
             <li><a href="/cart"><%= session[:cartTotal]%></a></li>
-            <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+
             <li><%= link_to "View Orders", orders_path %></li>
             <% if current_user&.admin? %>
             <li><%= link_to 'Admin', '/admin' %></li>

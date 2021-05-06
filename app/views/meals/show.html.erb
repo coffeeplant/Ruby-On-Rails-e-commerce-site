@@ -11,15 +11,32 @@
     
   <div class="mealhols">
   
-    <p>
-      Price: <%= number_to_currency(@meal.price, :unit => "€") %>
-      <br>
+    <h3>
       Category: <%= @meal.category %>
       <br>
       Allergens: <%= @meal.mealAllergens %>
-    </p>
+    </h3>
   
-    To do Meal Count:<%= @meal.orderCount %>
+<p>
+
+  <% @price = @meal.price %>
+  <p>
+    Cook At Home: <%= number_to_currency(@price, :unit => "€") %>
+    <a href="/cart/<%= @meal.id %>" class="button">Add To Cart</a>
+  </p>
+  
+  <p>
+    Oven ready: <%= number_to_currency(@price = @meal.price*1.3, :unit => "€") %>
+    <a href="/cart/<%= @meal.id %>" class="button">Add To Cart</a>
+  </p>
+  
+  <p>
+    Batch cook: <%= number_to_currency(@price = @meal.price*5, :unit => "€") %>  
+    <a href="/cart/<%= @meal.id %>" class="button">Add To Cart</a>
+  </p>
+  
+  <h2>Selected option and price to be sent to cart, needs another model</h2>
+</p>
 
     <p>
       <%= link_to 'Back', meals_path, :class => "button", :role => "button" %>
@@ -30,3 +47,4 @@
   </div>
 
 </div>
+

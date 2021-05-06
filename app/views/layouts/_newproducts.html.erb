@@ -1,10 +1,7 @@
-<h2>Popular this Week</h2>
+<h2>New Meals</h2>
 <table class="catalog">
     <!-- need to change this to highest number of orders -->
-    <% @meals.limit(3).order(id: :desc).each do |meal| %>
-    <!--@count = Orderitem.all.count-->
-    <!--    @order = Order.limit(1).order(id: :desc).where(user: User.find(current_user.id))-->
-    <!-- @orderitems = Orderitem.where(order_id: Order.limit(1).order(id: :desc).where(user: User.find(current_user.id)))-->
+    <% @meals.limit(3).order(:created_at).each do |meal| %>
         <tr>
             <td>
                 <div class="image">
