@@ -60,7 +60,7 @@ li a {
 }
 
 .container {
-      background: url("/assets/site/carrot-soup.jpg");
+      /*background: url("/assets/site/carrot-soup.jpg");*/
       background-repeat:no-repeat;
       background-size:100% 100%;
       background-position:right bottom;
@@ -128,6 +128,11 @@ li a {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+.button.button_small{
+    padding: 5px 10px;
+    
 }
 
 input[type=text], select {

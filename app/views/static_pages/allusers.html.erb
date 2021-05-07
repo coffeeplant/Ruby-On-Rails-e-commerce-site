@@ -13,8 +13,10 @@
                     <td><%= user.email %></td>
                     <td><%= user.admin %></td>
                         <!-- put in jquery 'Are you Sure?' -->
-                    <td><a href="/upgrade/<%= user.id %>"class="button">Make <%= user.email %> Admin</a></td>
-                    <td><a href="/downgrade/<%= user.id %>"class="button">Remove <%= user.email %> as Admin</a></td>
+                    <td><a href="/upgrade/<%= user.id %>"class="button">Make Admin</a></td>
+                    <td><a href="/downgrade/<%= user.id %>"class="button">Remove Admin</a></td>
+                    <td><%= link_to 'Edit', edit_registration_path(user), :class => "button", :role => "button" %></td>
+                      
               
                 </tr>
             <% end %>

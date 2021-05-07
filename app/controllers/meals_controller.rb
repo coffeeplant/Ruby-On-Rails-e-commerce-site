@@ -4,6 +4,7 @@ class MealsController < ApplicationController
   # GET /meals or /meals.json
   def index
     @meals = Meal.all
+
   end
 
   # GET /meals/1 or /meals/1.json
@@ -60,6 +61,11 @@ class MealsController < ApplicationController
   def search
     st = "%#{params[:q]}%"
     @meals = Meal.where("mealName like ? or description like ? ", st, st)
+  end
+  
+  def mymeals
+    @user = User.find_by_id(param[:id])
+    @meals = Meal.where(@user.prefs(meals.category).where.not(meal.allergen(@user.allergen)))
   end
 
   private

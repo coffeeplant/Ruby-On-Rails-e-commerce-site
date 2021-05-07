@@ -50,6 +50,7 @@ class OrdersController < ApplicationController
       end
     end
   end
+  
 
   # DELETE /orders/1 or /orders/1.json
   def destroy

@@ -8,7 +8,7 @@
     <table id="customers">
         
         <tr>
-            <th>Image</th>
+            <th></th>
             <th>Meal</th>
             <th>Less / More</th>
             <th>Remove</th>
@@ -28,8 +28,8 @@
             </td>
             
             <td class="mealName"><%= link_to meal.mealName, meal %></td>
-            <td><a href="/cart/decrease/<%= meal.id %>">Decrease</a></td>
-            <td><a href="/cart/remove/<%= meal.id %>">Remove From Cart</a></td>
+            <td><a class="button button_small" href="/cart/decrease/<%= meal.id %>">-</a><a class="button button_small" href="/cart/increase/<%= meal.id %>">+</a></td>
+            <td><a class="button button_small" href="/cart/remove/<%= meal.id %>">Remove From Cart</a></td>
             <td class="price"><%= number_to_currency(meal.price, :unit =>"€") %></td>
             <td class = "quantity"><%= quantity %></td>
             <td class="price"><%= number_to_currency(quantity * meal.price, :unit =>"€") %></td>

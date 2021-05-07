@@ -47,10 +47,13 @@ Rails.application.routes.draw do
   get '/cart/:id/', to: 'cart#add'
   get '/cart/remove/:id' => 'cart#remove'
   get '/cart/decrease/:id' => 'cart#decrease'
+  get '/cart/increase/:id' => 'cart#increase'
   
   get 'category/:title', to: 'static_pages#category'
   
   post '/search' => 'meals#search'
+  post '/mymeals/:id' => 'meals#mymeals'
+
   
   root :to => 'site#home'
   

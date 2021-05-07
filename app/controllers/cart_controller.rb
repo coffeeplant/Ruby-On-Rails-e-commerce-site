@@ -59,6 +59,15 @@ class CartController < ApplicationController
     redirect_to:action => :index
   end
   
+  def increase
+    id = params[:id]
+    cart = session[:cart]
+    
+      cart[id] = cart[id] + 1
+    #redirects to cart index view page
+    redirect_to:action => :index
+  end
+  
   def createOrder
     # Get the current user
     @user = User.find(current_user.id)

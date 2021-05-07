@@ -1,0 +1,27 @@
+<table class="catalog">
+
+    <% @meals.order(id: :desc).each do |meal| %>
+    <!--@count = Orderitem.all.count-->
+    <!--    @order = Order.limit(1).order(id: :desc).where(user: User.find(current_user.id))-->
+    <!--<#% @meals = Meal.where(user.prefs: Order.limit(1).order(id: :desc).where(user: User.find(current_user.id)))-->
+    <!--<#% @meals = Meal.where(User.prefs(@meals.category).where.not(meal.allergen(User.allergen))).each do |meal| %>-->
+        <tr>
+            <td>
+                <div class="image">
+                    <%= link_to (image_tag meal.image_url, :style => "height:100px"), meal %>
+                </div>
+                
+                <div class="title">
+                    <%= link_to meal.mealName, meal %>
+                </div>
+                
+                <div class="price">
+                    <%= number_to_currency(meal.price, :unit => "€") %>
+                </div>
+                <div class="links">
+                    <a href="/cart/<%= meal.id %>">Add to Cart</a>
+                </div>
+            </td>
+        </tr>
+    <% end %>
+</table>
