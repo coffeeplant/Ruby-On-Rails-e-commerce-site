@@ -64,8 +64,7 @@ class MealsController < ApplicationController
   end
   
   def mymeals
-    @user = User.find_by_id(param[:id])
-    @meals = Meal.where(@user.prefs(meals.category).where.not(meal.allergen(@user.allergen)))
+
   end
 
   private

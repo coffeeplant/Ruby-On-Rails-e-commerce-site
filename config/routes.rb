@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/contact' => 'static_pages#contact'
   get '/allusers' => 'static_pages#allusers'
   get '/adminorders' => 'static_pages#adminorders'
+  get '/adminmeals' => 'static_pages#adminmeals'
   get '/profile' => 'static_pages#profile'
   get '/prefmeat/:id' => 'static_pages#meat'
   get '/prefvegetarian/:id' => 'static_pages#vegetarian'

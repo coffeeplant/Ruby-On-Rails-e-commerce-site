@@ -2,16 +2,20 @@
 
 <% if user_signed_in? %>
     <h1>My Meals</h1>
-        <%= render '/meals/mymeals' %>
+        <%= render 'meals/mymeals' %>
 <% end %>
+ 
+<div id="mealsContainer">
+<h1>All Meals</h1>    
     <% @meals.each do |meal| %>
 
-<div id="mealsContainer">
-<h1>All Meals</h1>  
+
     <div class="mealhols">
         <h1><%= meal.mealName %></h1>
         <%= link_to (image_tag meal.image_url, :class => "mealsholsIm"), meal %>
-        <p><%= meal.description %></p>
+        <p>
+            <%= meal.description %>
+        </p>
         <p>
             Price <%= number_to_currency(meal.price, :unit => "€") %>
             <br>

@@ -1,27 +1,27 @@
-<table class="catalog">
+<div class="mealsContainer">
+    <!--<#% @meal = Meal.all %>-->
+    <!--<#% @mymeals = Meal.where(current_user.prefs = @meal.category) %>-->
 
-    <% @meals.order(id: :desc).each do |meal| %>
+    <% catName = current_user.prefs %>
+    <% allergenName = current_user.allergen %>
+    <% @mymeals = Meal.where("category like ?", catName).where.not("mealAllergens like ?", allergenName) %>
+    
+    <% @mymeals.each do |meal| %>
     <!--@count = Orderitem.all.count-->
     <!--    @order = Order.limit(1).order(id: :desc).where(user: User.find(current_user.id))-->
     <!--<#% @meals = Meal.where(user.prefs: Order.limit(1).order(id: :desc).where(user: User.find(current_user.id)))-->
     <!--<#% @meals = Meal.where(User.prefs(@meals.category).where.not(meal.allergen(User.allergen))).each do |meal| %>-->
-        <tr>
-            <td>
-                <div class="image">
-                    <%= link_to (image_tag meal.image_url, :style => "height:100px"), meal %>
-                </div>
-                
-                <div class="title">
-                    <%= link_to meal.mealName, meal %>
-                </div>
-                
-                <div class="price">
-                    <%= number_to_currency(meal.price, :unit => "€") %>
-                </div>
-                <div class="links">
-                    <a href="/cart/<%= meal.id %>">Add to Cart</a>
-                </div>
+        <div class="mealhols">
+        <h1><%= meal.mealName %></h1>
+        <%= link_to (image_tag meal.image_url, :class => "mealsholsIm"), meal %>
+        <p><%= meal.description %></p>  
+        <p>Price <%= number_to_currency(meal.price, :unit => "€") %>br>        
+        <p>
+            <%= link_to 'Show', meal, :class => "button", :role => "button" %>
+            <a href="/cart/<%= meal.id %>" class="button">Add To Cart</a>
+        </p>
+
             </td>
-        </tr>
+        </div>
     <% end %>
-</table>
+</div>

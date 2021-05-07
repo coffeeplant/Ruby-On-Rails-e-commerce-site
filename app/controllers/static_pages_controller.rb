@@ -46,6 +46,17 @@ class StaticPagesController < ApplicationController
     @users = User.all
   end
   
+  def adminmeals
+    if current_user&.admin?
+    
+    else
+      redirect_to "/"
+    end
+    
+    @meals = Meal.all
+  end
+  
+  
   def contact
   end
   
