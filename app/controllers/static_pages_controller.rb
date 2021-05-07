@@ -6,20 +6,14 @@ class StaticPagesController < ApplicationController
   end
 
   def help
-    #current_user.update_attribute :admin, true
-            # session[:cart] = nil
-      # if current_user.admin?
-      # else
-      #   redirect_to "/"
-      # end
-      #   @users = User.all
+
   end
 
   def about
   end
 
   def admin
-    if current_user&.admin?
+    if current_user.role == "Admin" || current_user.role == "Staff"
     
     else
       redirect_to "/"
@@ -28,7 +22,7 @@ class StaticPagesController < ApplicationController
   end 
   
   def adminorders
-    if current_user&.admin?
+    if current_user.role == "Admin" || current_user.role == "Staff"
     
     else
       redirect_to "/"
@@ -37,7 +31,7 @@ class StaticPagesController < ApplicationController
   end 
   
   def allusers
-    if current_user&.admin?
+    if current_user.role == "Admin" || current_user.role == "Staff"
     
     else
       redirect_to "/"
@@ -47,7 +41,7 @@ class StaticPagesController < ApplicationController
   end
   
   def adminmeals
-    if current_user&.admin?
+    if current_user.role == "Admin" || current_user.role == "Staff"
     
     else
       redirect_to "/"
@@ -99,16 +93,31 @@ class StaticPagesController < ApplicationController
      @user.update_attribute(:allergen, "Egg")
      redirect_to "/profile"
   end
+  
+  
+  
 
-  def upgrade
+  def upgradeadmin
     @user = User.find_by(id: params[:id])
-     @user.update_attribute(:admin, true)
+     @user.update_attribute(:role, "Admin")
      redirect_to "/allusers"
   end
   
-  def downgrade
+  def downgradeadmin
     @user = User.find_by(id: params[:id])
-    @user.update_attribute(:admin, false)
+    @user.update_attribute(:role, "Customer")
+    redirect_to "/allusers"
+  end
+  
+  def upgradestaff
+    @user = User.find_by(id: params[:id])
+    @user.update_attribute(:role, "Staff")
+    redirect_to "/allusers"
+  end
+  
+  def downgradestaff
+    @user = User.find_by(id: params[:id])
+    @user.update_attribute(:role, "Customer")
     redirect_to "/allusers"
   end
   

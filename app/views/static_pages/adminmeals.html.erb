@@ -2,34 +2,40 @@
 
 <div >
 <h1>All Meals</h1>    
-    <% @meals.each do |meal| %>
-
 
     <table id="customers">
-    <tr>
-        <td>Meal</td>
-        <td>Image File Name</td>
-        <td>Description</td>
-        <td>Price</td>
-        <td>Category</td>
-        <td>Allergens</td>
-    </tr>
-    <tr>
-        <td><%= meal.mealName %></td>
-        <td><%= meal.image_url %></td>
-        <td><%= meal.description %></td>
-        <td><%= number_to_currency(meal.price, :unit => "€") %></td>
-        <td><%= meal.category %></td>
-        <td><%= meal.mealAllergens %></td>
-    </tr>
-    <tr>
-        <td><%= link_to 'Show', meal, :class => "button", :role => "button" %></td>
-        <td><%= link_to 'Edit', edit_meal_path(meal), :class => "button", :role => "button" %></td>
-        <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button", :role => "button" %></td></td>
-    </tr>
-       
+        <thead>
+            <tr>
+                <td>Meal</td>
+                <td>Image File Name</td>
+                <td>Description</td>
+                <td>Price</td>
+                <td>Category</td>
+                <td>Allergens</td>
+                <td>Edit</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% @meals.each do |meal| %>
+                <tr>
+                    <td><a href= '/meal/<% meal.id %>'><%= meal.mealName %></a></td>
+                    <td><%= meal.image_url %></td>
+                    <td><%= meal.description %></td>
+                    <td><%= number_to_currency(meal.price, :unit => "€") %></td>
+                    <td><%= meal.category %></td>
+                    <td><%= meal.mealAllergens %></td>
+                    <td><%= link_to 'Edit', edit_meal_path(meal), :class => "button", :role => "button" %></td>
+                </tr>
+                <tr>
+                    <% if current_user.role == "Admin" %>
+                        <td><%= link_to 'Delete', meal, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button", :role => "button" %></td>
+                    <% end %>
+                </tr>
+            <% end %>
+        </tbody>
+
     </table>
-    <% end %>
+
 
 
 </div>

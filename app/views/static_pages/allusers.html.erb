@@ -5,16 +5,25 @@
             <tr>
                 <td>User Id</td>
                 <td>Email</td>
+                <td>Address</td>
+                <td>Phone</td>
                 <td>Role</td>
+
             </tr>
             <% @users.each do |user| %>
                 <tr>
                     <td><%= user.id %></td>
                     <td><%= user.email %></td>
-                    <td><%= user.admin %></td>
+                    <td><%= user.address %></td>
+                    <td><%= user.phone %></td>
+                    <td><%= user.role %></td>
                         <!-- put in jquery 'Are you Sure?' -->
-                    <td><a href="/upgrade/<%= user.id %>"class="button">Make Admin</a></td>
-                    <td><a href="/downgrade/<%= user.id %>"class="button">Remove Admin</a></td>
+                        <% if current_user.role == "Admin" %>
+                            <td><a href="/upgradeadmin/<%= user.id %>"class="button">Make Admin</a></td>
+                            <td><a href="/downgradeadmin/<%= user.id %>"class="button">Remove as Admin</a></td>
+                            <td><a href="/upgradestaff/<%= user.id %>"class="button">Make Staff</a></td>
+                            <td><a href="/downgradestaff/<%= user.id %>"class="button">Make as Staff</a></td>
+                        <% end %>
                     <td><%= link_to 'Edit', edit_registration_path(user), :class => "button", :role => "button" %></td>
                       
               

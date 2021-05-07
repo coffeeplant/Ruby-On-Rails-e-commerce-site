@@ -40,8 +40,10 @@
 
     <p>
       <%= link_to 'Back', meals_path, :class => "button", :role => "button" %>
-      <%= link_to 'Edit', edit_meal_path(@meal), :class => "button", :role => "button" %> |
-
+      <%= link_to 'Edit', edit_meal_path(@meal), :class => "button", :role => "button" %>
+          <% if current_user.role == "Admin" || current_user.role == "Staff"  %>
+            <a href= '/adminmeals', class= "button">Back to all Meals</a>
+          <% end %>
     </p>
   
   </div>

@@ -9,7 +9,7 @@
             <% if user_signed_in? %>
                 <li><a href="#">Hi <%= current_user.email %></a></li>
                 <li><%=link_to "My Account", '/profile'%></li>
-                    <% if current_user&.admin? %>
+                    <% if current_user.role == "Admin" || current_user.role == "Staff" %>
                         <li><%= link_to 'Admin', '/admin' %></li>
                     <% end %>
                 <li><%= link_to "Cart", '/cart' %></li>

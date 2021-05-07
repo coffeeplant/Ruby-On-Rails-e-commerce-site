@@ -23,11 +23,11 @@
             Allergens:<%= meal.mealAllergens %>
         </p>
         <p>
-            <%= link_to 'Show', meal, :class => "button", :role => "button" %>
+            <%= link_to 'More options', meal, :class => "button", :role => "button" %>
             <a href="/cart/<%= meal.id %>" class="button">Add To Cart</a>
         </p>
         <p>
-            <% if current_user&.admin %>
+            <% if current_user.role == "Admin" || current_user.role == "Staff" %>
                 <%= link_to 'Edit', edit_meal_path(meal), :class => "button", :role => "button" %>
                 <%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button", :role => "button" %>
             <% end %>
@@ -39,7 +39,3 @@
 
 </div>
 
-<br>
-<% if session[:login] == 1 %>
-<% link_to 'New Meal', new_meal_path, :class => "button", :role=>"button" %>
-<% end %>

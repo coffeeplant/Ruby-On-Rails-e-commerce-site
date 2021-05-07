@@ -40,8 +40,10 @@ Rails.application.routes.draw do
   
   get '/login' => 'user#login'
   get '/logout' => 'user#logout'
-  get '/upgrade/:id' => 'static_pages#upgrade'
-  get '/downgrade/:id' => 'static_pages#downgrade'
+  get '/upgradeadmin/:id' => 'static_pages#upgradeadmin'
+  get '/downgradeadmin/:id' => 'static_pages#downgradeadmin'
+  get '/upgradestaff/:id' => 'static_pages#upgradestaff'
+  get '/downgradestaff/:id' => 'static_pages#downgradestaff'
   
   get '/clearcart', to: 'cart#clearCart'
   get '/cart' => 'cart#index'
