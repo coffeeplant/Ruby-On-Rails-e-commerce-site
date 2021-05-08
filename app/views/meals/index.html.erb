@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <% if user_signed_in? %>
-    <h1>My Meals</h1>
         <%= render 'meals/mymeals' %>
 <% end %>
  
@@ -27,10 +26,10 @@
             <a href="/cart/<%= meal.id %>" class="button">Add To Cart</a>
         </p>
         <p>
-            <% if current_user.role == "Admin" || current_user.role == "Staff" %>
-                <%= link_to 'Edit', edit_meal_path(meal), :class => "button", :role => "button" %>
-                <%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button", :role => "button" %>
-            <% end %>
+            <!--<#% if current_user.role == "Admin" || current_user.role == "Staff" %>-->
+                <!--<#%= link_to 'Edit', edit_meal_path(meal), :class => "button", :role => "button" %>-->
+                <!--<#%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button", :role => "button" %>-->
+            <!--<#% end %>-->
         </p>
     
     </div>

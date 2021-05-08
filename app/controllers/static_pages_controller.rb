@@ -76,6 +76,12 @@ class StaticPagesController < ApplicationController
      redirect_to "/profile"
   end
 
+  def prefclear
+    @user = User.find_by(id: params[:id])
+     @user.update_attribute(:prefs, nil)
+     redirect_to "/profile"
+  end
+
   def wheat
     @user = User.find_by(id: params[:id])
      @user.update_attribute(:allergen, "Wheat")
@@ -88,13 +94,17 @@ class StaticPagesController < ApplicationController
      redirect_to "/profile"
   end
   
-    def egg
+  def egg
     @user = User.find_by(id: params[:id])
      @user.update_attribute(:allergen, "Egg")
      redirect_to "/profile"
   end
   
-  
+  def allergenclear
+    @user = User.find_by(id: params[:id])
+     @user.update_attribute(:allergen, nil)
+     redirect_to "/profile"
+  end
   
 
   def upgradeadmin

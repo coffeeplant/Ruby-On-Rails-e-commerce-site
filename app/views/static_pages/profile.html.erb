@@ -1,48 +1,52 @@
 <% provide(:title, "Profile Page") %>
-    <div>
+<div>
     <h1>Your Profile</h1>
-
-
-<p><%= link_to 'Edit Login Details', edit_user_registration_path, :class=>"button", :role=>"button" %></p>
-<p><%= link_to "View Orders", orders_path , :class=>"button", :role=>"button" %></p>
-
-<%= render 'form', user: @user %>
-
-    </table>
-        <tr>
-            <td>Name</td>
-            <td>Address</td>
-            <td>Phone</td>
-        </tr>
-        <tr>
-            <td><%= @user.name %></td>
-            <td><%= @user.address %></td>
-            <td><%= @user.phone %></td>
-        </tr>
-    </table>
+    
+    <p><%= link_to 'Edit Login Details', edit_user_registration_path, :class=>"button", :role=>"button" %></p>
+    <p><%= link_to "View Orders", orders_path , :class=>"button", :role=>"button" %></p>
+    
+    <!--<#%= render 'form', user: @user %>-->
+    
+        <table>
+            <tr>
+                <td>Name</td>
+                <td>Address</td>
+                <td>Phone</td>
+            </tr>
+            <tr>
+                <td><%= @user.name %></td>
+                <td><%= @user.address %></td>
+                <td><%= @user.phone %></td>
+            </tr>
+        </table>
+            
+    <h2>Preferences</h2>
+    
+        <% if @user.prefs.blank? %>
         
-<h2>Preferences</h2>
-
-    <td><%= @user.prefs %></td>
-
-<p><td><a href="/prefmeat/<%= @user.id %>"class="button">Meat</a></td></p>
-<p><td><a href="/prefvegetarian/<%= @user.id %>"class="button">Vegetarian</a></td></p>
-<p><td><a href="/prefvegan/<%= @user.id %>"class="button">Vegan</a></td></p>
-
-<!--<td><a href="/upgrade/<#%= user.id %>"class="button">Make <#%= user.email %> Admin</a></td>-->
-    </div>
-
-<h2>Allergens</h2>
-
-    <td><%= @user.allergen %></td>
-
-<p><td><a href="/allergenwheat/<%= @user.id %>"class="button">Wheat</a></td></p>
-<p><td><a href="/allergennut/<%= @user.id %>"class="button">Nuts</a></td></p>
-<p><td><a href="/allergenegg/<%= @user.id %>"class="button">Eggs</a></td></p>
-
-<!--<td><a href="/upgrade/<#%= user.id %>"class="button">Make <#%= user.email %> Admin</a></td>-->
-    </div>
+        <%else%>
+            <p>You prefer <%= @user.prefs %> dishes <a href="/prefclear/<%= @user.id %>">Clear</a></p>
+        <% end %>
+        
+    <p>
+        <a href="/prefmeat/<%= @user.id %>"class="button">Meat</a>
+        <a href="/prefvegetarian/<%= @user.id %>"class="button">Vegetarian</a>
+        <a href="/prefvegan/<%= @user.id %>"class="button">Vegan</a>
+        
+    </p>
     
+        
+    <h2>Allergens</h2>
     
-  
+        <% if @user.allergen.blank? %>
+        
+        <%else%>
+         <p>You cannot have <%= @user.allergen %> in your meals <a href="/allergenclear/<%= @user.id %>">Clear</a></p>
+        <% end %>
+    <p>
+        <a href="/allergenwheat/<%= @user.id %>"class="button">Wheat</a>
+        <a href="/allergennut/<%= @user.id %>"class="button">Nuts</a>
+        <a href="/allergenegg/<%= @user.id %>"class="button">Eggs</a>
+    </p>
 
+</div>

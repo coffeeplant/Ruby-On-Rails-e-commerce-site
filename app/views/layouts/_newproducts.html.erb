@@ -1,35 +1,30 @@
 <h2>New Meals</h2>
-<table class="catalog">
+
     <!-- need to change this to highest number of orders -->
     <% @meals.limit(3).order(:created_at).each do |meal| %>
-        <tr>
-            <td>
-                <div class="image">
-                    <%= link_to (image_tag meal.image_url, :style => "height:100px"), meal %>
-                </div>
+        <div class = "mealhols">
+            <%= link_to (image_tag meal.image_url, :class=>"mealsholsIm"), meal %>
+            
+            <h2>
+                <%= link_to meal.mealName, meal %>
+            </h2>
+            
+            <!--<div class="description">-->
+            <!--    <#%= meal.description %>-->
+            <!--</div>-->
+            
+            <div class="price">
+                <%= number_to_currency(meal.price, :unit => "€") %>
+            </div>
+            <div class="links">
+                <% if session[:login] ==1 %>
+                    <%= link_to 'Edit', edit_meal_path(meal) %>
+                    <%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% else %>
                 
-                <div class="title">
-                    <%= link_to meal.mealName, meal %>
-                </div>
-                
-                <!--<div class="description">-->
-                <!--    <#%= meal.description %>-->
-                <!--</div>-->
-                
-                <div class="price">
-                    <%= number_to_currency(meal.price, :unit => "€") %>
-                </div>
-                <div class="links">
-                    <% if session[:login] ==1 %>
-                        <%= link_to 'Edit', edit_meal_path(meal) %>
-                        <%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    <% else %>
-                    
-                    <a href="/cart/<%= meal.id %>">Add to Cart</a>
+                <a class="button" href="/cart/<%= meal.id %>">Add to Cart</a>
 
-                    <% end %>
-                </div>
-            </td>
-        </tr>
+                <% end %>
+            </div>
+        </div>
     <% end %>
-</table>

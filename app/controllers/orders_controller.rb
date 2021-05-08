@@ -3,8 +3,8 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    @user = User.find(current_user.id)
-    @orders = @user.orders.all
+      @user = User.find(current_user.id)
+      @orders = @user.orders.all
   end
 
   # GET /orders/1 or /orders/1.json

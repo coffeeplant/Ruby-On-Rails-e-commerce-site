@@ -1,10 +1,13 @@
 <div class="mealsContainer">
     <!--<#% @meal = Meal.all %>-->
     <!--<#% @mymeals = Meal.where(current_user.prefs = @meal.category) %>-->
-
+    
+<% if current_user.prefs != nil && current_user.allergen != nil %>
+    <h1>My Meals</h1>
+<% end %>
     <% catName = current_user.prefs %>
     <% allergenName = current_user.allergen %>
-    <% @mymeals = Meal.where("category like ?", catName).where.not("mealAllergens like ?", allergenName) %>
+    <% @mymeals = Meal.where("category like ?", catName) || Meal.where.not("mealAllergens like ?", allergenName)%>
     
     <% @mymeals.each do |meal| %>
     <!--@count = Orderitem.all.count-->
@@ -15,7 +18,7 @@
         <h1><%= meal.mealName %></h1>
         <%= link_to (image_tag meal.image_url, :class => "mealsholsIm"), meal %>
         <p><%= meal.description %></p>  
-        <p>Price <%= number_to_currency(meal.price, :unit => "€") %>br>        
+        <p>Price <%= number_to_currency(meal.price, :unit => "€") %>       
         <p>
             <%= link_to 'Show', meal, :class => "button", :role => "button" %>
             <a href="/cart/<%= meal.id %>" class="button">Add To Cart</a>

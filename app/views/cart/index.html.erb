@@ -17,6 +17,7 @@
             <th>Item Total</th>
         </tr>
         <% total = 0 %> 
+        <% totalQuantity = 0 %> 
         <% @cart.each do |id, quantity| %>
         
         <% meal = Meal.find_by_id(id) %>
@@ -33,17 +34,20 @@
             <td class="price"><%= number_to_currency(meal.price, :unit =>"€") %></td>
             <td class = "quantity"><%= quantity %></td>
             <td class="price"><%= number_to_currency(quantity * meal.price, :unit =>"€") %></td>
-            
         </tr>
-        
         <tr>
+            <!--<#% testquanity = 0%>-->
+            <% totalQuantity += quantity %>
             <% total += quantity * meal.price %>
-            
             <% session[:cartTotal] = total %>
+            <% session[:cartQuantity] = totalQuantity %>
         <% end %>
         </tr>
-        
+            <!--<#% cartQuantity = 0%>-->
+            <!--<#% cartQuantity += testquantity %>-->
+            <!--<#% session[:cartQuantity] = testquanity %>-->
         <tr>
+            <!--Total: <#%= total %>-->
             <td>Grand Total: <%= number_to_currency(total, :unit =>"€") %></td>
         </tr>
         

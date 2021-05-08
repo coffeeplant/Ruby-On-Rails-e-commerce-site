@@ -1,17 +1,18 @@
 <% provide(:title, "Home") %>
 
 <div class="mainCont">
-<%= image_tag("food_banner.jpg", alt: "Welcome Logo", :class => "welcomeIm") %>    
 
-
-    
-<h1>Home</h1>
-<p>Welcome to your first home page!</p>
+<% if user_signed_in? %>
+    <%= render 'meals/mymeals' %>
+<% end %>
+<br>
+<%= render 'layouts/newproducts' %>
+<br>
+<%= render 'layouts/about' %>
 <br>
 <%= render 'layouts/categories' %>
 <br>
 <%= render 'layouts/popular' %>
-
 <br>
-<%= render 'layouts/newproducts' %>
+<%= render 'layouts/contact' %>
 </div>

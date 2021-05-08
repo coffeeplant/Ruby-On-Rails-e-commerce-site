@@ -31,9 +31,11 @@ Rails.application.routes.draw do
   get '/prefmeat/:id' => 'static_pages#meat'
   get '/prefvegetarian/:id' => 'static_pages#vegetarian'
   get '/prefvegan/:id' => 'static_pages#vegan'
+  get '/prefclear/:id' => 'static_pages#prefclear'
   get '/allergenwheat/:id'=> 'static_pages#wheat'
   get '/allergennut/:id' => 'static_pages#nut'
   get '/allergenegg/:id' => 'static_pages#egg'
+  get '/allergenclear/:id' => 'static_pages#allergenclear'
 
 
 

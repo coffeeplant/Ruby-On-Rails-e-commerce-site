@@ -3,6 +3,11 @@ class CategoriesController < ApplicationController
 
   # GET /categories or /categories.json
   def index
+    if current_user.role == "Admin" || current_user.role == "Staff"
+    
+    else
+      redirect_to "/"
+    end
     @categories = Category.all
   end
 

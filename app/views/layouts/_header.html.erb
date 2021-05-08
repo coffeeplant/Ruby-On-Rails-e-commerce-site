@@ -13,15 +13,22 @@
                         <li><%= link_to 'Admin', '/admin' %></li>
                     <% end %>
                 <li><%= link_to "Cart", '/cart' %></li>
-                <li><a href="/cart"><%= session[:cartTotal]%></a></li>
+                <li>
+                    <a href="/cart"><%= session[:cartTotal] %> | <%= session[:cartQuantity] %> Items</a>
+                    <!--<a href="/cart"><#%= session[:cartQuantity] %></a>-->
+
+                </li>
+
 
                 <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
             <% else %>
                 <li><%= link_to 'Register', new_user_registration_path %></li>
                 <li><%= link_to 'Sign in', new_user_session_path %></li>
             <% end %>
-
-
+            
+            <li class="search-out">
+                <%= render '/layouts/search' %>
+            </li>
 
         
     </ul>
