@@ -6,8 +6,10 @@
     <h1>My Meals</h1>
 <% end %>
     <% catName = current_user.prefs %>
+
     <% allergenName = current_user.allergen %>
-    <% @mymeals = Meal.where("category like ?", catName) || Meal.where.not("mealAllergens like ?", allergenName)%>
+
+    <% @mymeals = Meal.where("category like ?", catName).where.not("mealAllergens like ?", allergenName)%>
     
     <% @mymeals.each do |meal| %>
     <!--@count = Orderitem.all.count-->

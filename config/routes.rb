@@ -57,6 +57,9 @@ Rails.application.routes.draw do
   get 'category/:title', to: 'static_pages#category'
   
   post '/search' => 'meals#search'
+  post '/deliveryname' => 'static_pages#deliveryname'
+  post '/deliveryaddress' => 'static_pages#deliveryaddress'
+  post '/deliveryphone' => 'static_pages#deliveryphone'
   post '/mymeals/:id' => 'meals#mymeals'
 
   

@@ -5,20 +5,44 @@
     <p><%= link_to 'Edit Login Details', edit_user_registration_path, :class=>"button", :role=>"button" %></p>
     <p><%= link_to "View Orders", orders_path , :class=>"button", :role=>"button" %></p>
     
-    <!--<#%= render 'form', user: @user %>-->
+
     
-        <table>
-            <tr>
-                <td>Name</td>
-                <td>Address</td>
-                <td>Phone</td>
-            </tr>
-            <tr>
-                <td><%= @user.name %></td>
-                <td><%= @user.address %></td>
-                <td><%= @user.phone %></td>
-            </tr>
-        </table>
+    
+<h3>Name</h3>
+<p><%= @user.name %> <button class="name-button">edit</button></p>
+<div class="name-form" style="display:none">
+    <%= form_tag("/deliveryname", :method => "post") do %>
+        <div class="field">
+            <%= text_field_tag(:q) %>
+            <%= hidden_field_tag :id, @user.id %>
+            <%= submit_tag("Update Name") %>
+        </div>
+    <% end %>
+</div>
+
+<h3>Address</h3
+<p><%= @user.address %> <button class="address-button">edit</button></p>
+<div class="address-form" style="display:none">
+    <%= form_tag("/deliveryaddress", :method => "post") do %>
+        <div class="field">
+            <%= text_field_tag(:q) %>
+            <%= hidden_field_tag :id, @user.id %>
+            <%= submit_tag("Update Address") %>
+        </div>
+    <% end %>
+</div>
+
+<h3>Phone</h3>
+<p><%= @user.phone %> <button class="phone-button">edit</button></p>
+<div class="phone-form" style="display:none">
+    <%= form_tag("/deliveryphone", :method => "post") do %>
+        <div class="field">
+            <%= text_field_tag(:q) %>
+            <%= hidden_field_tag :id, @user.id %>
+            <%= submit_tag("Update Phone") %>
+        </div>
+    <% end %>
+</div>        
             
     <h2>Preferences</h2>
     

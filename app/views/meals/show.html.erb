@@ -24,15 +24,15 @@
     Cook At Home: <%= number_to_currency(@price, :unit => "€") %>
     <a href="/cart/<%= @meal.id %>" class="button">Add To Cart</a>
   </p>
-  
+  <% @price = @meal.price2 %>
   <p>
-    Oven ready: <%= number_to_currency(@price = @meal.price*1.3, :unit => "€") %>
-    <a href="/cart/<%= @meal.id %>" class="button">Add To Cart</a>
+    Oven ready: <%= number_to_currency(@price, :unit => "€") %>
+    <a href="/cart/price2/<%= @meal.id %>" class="button">Add To Cart</a>
   </p>
-  
+  <% @price = @meal.price3 %>
   <p>
-    Batch cook: <%= number_to_currency(@price = @meal.price*5, :unit => "€") %>  
-    <a href="/cart/<%= @meal.id %>" class="button">Add To Cart</a>
+    Batch cook: <%= number_to_currency(@price, :unit => "€") %>  
+    <a href="/cart/price3/<%= @meal.id %>" class="button">Add To Cart</a>
   </p>
   
   <h2>Selected option and price to be sent to cart, needs another model</h2>

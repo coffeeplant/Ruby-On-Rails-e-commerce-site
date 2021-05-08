@@ -90,7 +90,7 @@ class StaticPagesController < ApplicationController
   
   def nut
     @user = User.find_by(id: params[:id])
-     @user.update_attribute(:allergen, "Nut")
+     @user.update_attribute(:allergen, "Nuts")
      redirect_to "/profile"
   end
   
@@ -106,6 +106,31 @@ class StaticPagesController < ApplicationController
      redirect_to "/profile"
   end
   
+  def deliveryname
+    @user = User.find_by(id: params[:id])
+    nam = "%#{params[:q]}%" 
+    @user.update_attribute(:name, nam)
+    redirect_to "/profile"
+ end
+  
+  def deliveryaddress
+    @user = User.find_by(id: params[:id])
+    add = "%#{params[:q]}%" 
+    @user.update_attribute(:address, add)
+    redirect_to "/profile"
+ end
+ 
+  def deliveryphone
+    @user = User.find_by(id: params[:id])
+    ph = "%#{params[:q]}%" 
+    @user.update_attribute(:phone, ph)
+    redirect_to "/profile"
+ end
+ 
+  # def search
+  #   st = "%#{params[:q]}%"
+  #   @meals = Meal.where("mealName like ? or description like ? ", st, st)
+  # end
 
   def upgradeadmin
     @user = User.find_by(id: params[:id])

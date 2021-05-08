@@ -9,7 +9,9 @@
                 <td>Meal</td>
                 <td>Image File Name</td>
                 <td>Description</td>
-                <td>Price</td>
+                <td>Cook At Home Price</td>
+                <td>Oven Ready Price</td>
+                <td>Batch Cook Price</td>
                 <td>Category</td>
                 <td>Allergens</td>
                 <td>Edit</td>
@@ -22,6 +24,8 @@
                     <td><%= meal.image_url %></td>
                     <td><%= meal.description %></td>
                     <td><%= number_to_currency(meal.price, :unit => "€") %></td>
+                    <td><%= number_to_currency(meal.price2, :unit => "€") %></td>
+                    <td><%= number_to_currency(meal.price3, :unit => "€") %></td>
                     <td><%= meal.category %></td>
                     <td><%= meal.mealAllergens %></td>
                     <td><%= link_to 'Edit', edit_meal_path(meal), :class => "button", :role => "button" %></td>
