@@ -5,6 +5,7 @@
 
         <% catName = current_user.prefs %>
         <% allergenName = current_user.allergen %>
+        <!--BOTH METHOD catName: <#%=catName%>, allergenName: <#%=allergenName%>-->
         
         <h1>My Meals</h1>
         <% @mymeals = Meal.where("category like ?", catName).where.not("mealAllergens like ?", allergenName)%>
@@ -14,7 +15,6 @@
             <div class="mealhols">
             <h1><%= meal.mealName %></h1>
             <%= link_to (image_tag meal.image_url, :class => "mealsholsIm"), meal %>
-            <p><%= meal.description %></p>  
             <p>Price <%= number_to_currency(meal.price, :unit => "€") %></p>
             <p>
                 <%= link_to 'Show', meal, :class => "button", :role => "button" %>
@@ -37,7 +37,6 @@
             <div class="mealhols">
             <h1><%= meal.mealName %></h1>
             <%= link_to (image_tag meal.image_url, :class => "mealsholsIm"), meal %>
-            <p><%= meal.description %></p>  
             <p>Price <%= number_to_currency(meal.price, :unit => "€") %></p>
             <p>
                 <%= link_to 'Show', meal, :class => "button", :role => "button" %>
@@ -46,7 +45,7 @@
             </div>
         <% end %>
 <!--ALLERGENS POPULATED ********************** -->        
-    <% else current_user.prefs == nil && current_user.allergen != nil %>
+    <% elsif current_user.prefs == nil && current_user.allergen != nil %>
     
         <% allergenName = current_user.allergen %>
         <!--ALLERGY METHOD allergenName: <#%=allergenName%>-->
@@ -59,7 +58,6 @@
             <div class="mealhols">
             <h1><%= meal.mealName %></h1>
             <%= link_to (image_tag meal.image_url, :class => "mealsholsIm"), meal %>
-            <p><%= meal.description %></p>  
             <p>Price <%= number_to_currency(meal.price, :unit => "€") %></p>
             <p>
                 <%= link_to 'Show', meal, :class => "button", :role => "button" %>
