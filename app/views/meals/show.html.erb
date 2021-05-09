@@ -1,5 +1,5 @@
+<% provide(:title, Meal) %>
 <p id="notice"><%= notice %></p>
-
 
 <div id="mealsContainer">
   
@@ -17,27 +17,22 @@
       Allergens: <%= @meal.mealAllergens %>
     </h3>
   
-<p>
-
-  <% @price = @meal.price %>
-  <p>
-    Cook At Home: <%= number_to_currency(@price, :unit => "€") %>
-    <a href="/cart/<%= @meal.id %>" class="button">Add To Cart</a>
-  </p>
-  <% @price = @meal.price2 %>
-  <p>
-    Oven ready: <%= number_to_currency(@price, :unit => "€") %>
-    <a href="/cart/price2/<%= @meal.id %>" class="button">Add To Cart</a>
-  </p>
-  <% @price = @meal.price3 %>
-  <p>
-    Batch cook: <%= number_to_currency(@price, :unit => "€") %>  
-    <a href="/cart/price3/<%= @meal.id %>" class="button">Add To Cart</a>
-  </p>
-  
-  <h2>Selected option and price to be sent to cart, needs another model</h2>
-</p>
-
+    <p>
+      <% @price = @meal.price %>
+      Cook At Home: <%= number_to_currency(@price, :unit => "€") %>
+      <a href="/cart/<%= @meal.id %>" class="button">Add To Cart</a>
+    </p>
+    <!-- beginning to add different pricing options -->
+    <!--<#% @price = @meal.price2 %>-->
+    <!--<p>-->
+    <!--  Oven ready: <#%= number_to_currency(@price, :unit => "€") %>-->
+    <!--  <a href="/cart/price2/<#%= @meal.id %>" class="button">Add To Cart</a>-->
+    <!--</p>-->
+    <!--<#% @price = @meal.price3 %>-->
+    <!--<p>-->
+    <!--  Batch cook: <#%= number_to_currency(@price, :unit => "€") %>  -->
+    <!--  <a href="/cart/price3/<#%= @meal.id %>" class="button">Add To Cart</a>-->
+    <!--</p>-->
     <p>
       <%= link_to 'Back', meals_path, :class => "button", :role => "button" %>
       <%= link_to 'Edit', edit_meal_path(@meal), :class => "button", :role => "button" %>

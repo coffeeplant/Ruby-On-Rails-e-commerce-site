@@ -2,11 +2,11 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
+//for testing
 $( document ).ready(function() {
     console.log( "ready!" );
 
-
+//toggle 'edit' button on /profile
     $(".name-button").click(function(){
         $('.name-form').toggle();
     });

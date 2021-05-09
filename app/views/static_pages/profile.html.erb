@@ -1,48 +1,46 @@
-<% provide(:title, "Profile Page") %>
+<% provide(:title, "My Account") %>
+<p id="notice"><%= notice %></p>
 <div>
     <h1>Your Profile</h1>
     
     <p><%= link_to 'Edit Login Details', edit_user_registration_path, :class=>"button", :role=>"button" %></p>
     <p><%= link_to "View Orders", orders_path , :class=>"button", :role=>"button" %></p>
     
-
+    <h3>Name</h3>
+    <p><%= @user.name %> <button class="name-button">edit</button></p>
+        <div class="name-form" style="display:none">
+            <%= form_tag("/deliveryname", :method => "post") do %>
+                <div class="field">
+                    <%= text_field_tag(:q) %>
+                    <%= hidden_field_tag :id, @user.id %>
+                    <%= submit_tag("Update Name") %>
+                </div>
+            <% end %>
+        </div>
     
+    <h3>Address</h3
+    <p><%= @user.address %> <button class="address-button">edit</button></p>
+        <div class="address-form" style="display:none">
+            <%= form_tag("/deliveryaddress", :method => "post") do %>
+                <div class="field">
+                    <%= text_field_tag(:q) %>
+                    <%= hidden_field_tag :id, @user.id %>
+                    <%= submit_tag("Update Address") %>
+                </div>
+            <% end %>
+        </div>
     
-<h3>Name</h3>
-<p><%= @user.name %> <button class="name-button">edit</button></p>
-<div class="name-form" style="display:none">
-    <%= form_tag("/deliveryname", :method => "post") do %>
-        <div class="field">
-            <%= text_field_tag(:q) %>
-            <%= hidden_field_tag :id, @user.id %>
-            <%= submit_tag("Update Name") %>
-        </div>
-    <% end %>
-</div>
-
-<h3>Address</h3
-<p><%= @user.address %> <button class="address-button">edit</button></p>
-<div class="address-form" style="display:none">
-    <%= form_tag("/deliveryaddress", :method => "post") do %>
-        <div class="field">
-            <%= text_field_tag(:q) %>
-            <%= hidden_field_tag :id, @user.id %>
-            <%= submit_tag("Update Address") %>
-        </div>
-    <% end %>
-</div>
-
-<h3>Phone</h3>
-<p><%= @user.phone %> <button class="phone-button">edit</button></p>
-<div class="phone-form" style="display:none">
-    <%= form_tag("/deliveryphone", :method => "post") do %>
-        <div class="field">
-            <%= text_field_tag(:q) %>
-            <%= hidden_field_tag :id, @user.id %>
-            <%= submit_tag("Update Phone") %>
-        </div>
-    <% end %>
-</div>        
+    <h3>Phone</h3>
+    <p><%= @user.phone %> <button class="phone-button">edit</button></p>
+        <div class="phone-form" style="display:none">
+            <%= form_tag("/deliveryphone", :method => "post") do %>
+                <div class="field">
+                    <%= text_field_tag(:q) %>
+                    <%= hidden_field_tag :id, @user.id %>
+                    <%= submit_tag("Update Phone") %>
+                </div>
+            <% end %>
+        </div>        
             
     <h2>Preferences</h2>
     
@@ -54,6 +52,7 @@
         
     <p>
         <a href="/prefmeat/<%= @user.id %>"class="button">Meat</a>
+        <a href="/preffish/<%= @user.id %>"class="button">Fish</a>
         <a href="/prefvegetarian/<%= @user.id %>"class="button">Vegetarian</a>
         <a href="/prefvegan/<%= @user.id %>"class="button">Vegan</a>
         

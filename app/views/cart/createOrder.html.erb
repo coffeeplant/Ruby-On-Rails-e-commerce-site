@@ -1,23 +1,12 @@
-
-    <h1>
-        Thank You
-        <br>
-        You have just placed an order <%= @order.id%>
-    </h1>
+<% provide(:title, "Your Order") %>
+<h1>
+    Thank You
+    <br>
+    You have just placed an order: <%= @order.id%>
+</h1>
 
 <div id="itemsContainer">
-    <!--<table id="customers">-->
-    <!--    <tr>-->
-            <!--displays on ly latest order from list of orders-->
-    <!--        <%#@orders.limit(1).order(id :desc).each do |order| %>-->
-    
-    <!--        <td>-->
-    <!--            Order references for the order you just placed <%#= order.id %>-->
-    <!--        <%#end %>-->
-    <!--        </td>-->
-    <!--    </tr>-->
-    <!--</table>-->
-    
+
     <table id="customers">
         <% @total = 0 %>
         <% @orderitems.each do |id, quantity| %>
@@ -31,14 +20,13 @@
             <td><%= number_to_currency(meal.quantity * meal.price, :unit => "€") %></td>
         </tr>
         <tr>
-
             <% runningTotal = (meal.quantity * meal.price)%>
-            
             <% @total += runningTotal %>
         </tr>
             <% end %>
         <tr>
             <td>Order total: &euro; <%= @total %></td>
+            
             <% shipping = 5 %>
             <% @overall = shipping + @total %>
         </tr>
@@ -57,9 +45,6 @@
                     <input type="hidden" name="return" value="https://a2f753af818d4f18ae6791b887821af9.vfs.cloud9.us-east-1.amazonaws.com/thankyou/<%= @order.id %>" >
                 </form>
 
-                <h2>
-                    <a href="/paid/<%= @order.id %>" class="button">Pay Now</a>
-                </h2>
             </td>
         </tr>
     </table>

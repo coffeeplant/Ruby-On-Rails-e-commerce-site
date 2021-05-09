@@ -1,35 +1,43 @@
 <header class="headSec">
     <h1>ShrewdFewd</h1>
-    <ul>
-        <li><%= link_to "Home",  "/" %></li>
-        <li><%= link_to "Meals",  "/meals" %></li>
-        <li><%= link_to "About", '/about' %></li>
-        <li><%= link_to "Contact", '/contact' %></li>
-
-            <% if user_signed_in? %>
-                <li><a href="#">Hi <%= current_user.email %></a></li>
-                <li><%=link_to "My Account", '/profile'%></li>
-                    <% if current_user.role == "Admin" || current_user.role == "Staff" %>
-                        <li><%= link_to 'Admin', '/admin' %></li>
+        <ul>
+            <li><%= link_to "Home",  "/" %></li>
+            <li><%= link_to "Meals",  "/meals" %></li>
+            <li><%= link_to "About", '/about' %></li>
+            <li><%= link_to "Help", '/help' %></li>
+            <li><%= link_to "Contact", '/contact' %></li>
+    
+                <% if user_signed_in? %>
+                    <% if current_user.name != nil %>
+                        <li><a href="#">Hi <%= current_user.name %></a></li>
                     <% end %>
-                <li><%= link_to "Cart", '/cart' %></li>
-                <li>
-                    <a href="/cart"><%= session[:cartTotal] %> | <%= session[:cartQuantity] %> Items</a>
-                    <!--<a href="/cart"><#%= session[:cartQuantity] %></a>-->
-
+                    <li><%=link_to "My Account", '/profile'%></li>
+                        <% if current_user.role == "Admin" || current_user.role == "Staff" %>
+                            <li><%= link_to 'Admin', '/admin' %></li>
+                        <% end %>
+                    <li><%= link_to "Cart", '/cart' %></li>
+                        <% if session[:cart] != nil %>
+                            <li>
+                                <a href="/cart"><%= session[:cartTotal] %> | 
+                                <% if session[:cartQuantity] == nil%>
+                                0
+                                <% else %>
+                                    <%= session[:cartQuantity] %>
+                                <% end %>
+                                Items</a>
+                            </li>
+                        <% end %>
+    
+                    <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+                <% else %>
+                    <li><%= link_to 'Register', new_user_registration_path %></li>
+                    <li><%= link_to 'Sign in', new_user_session_path %></li>
+                <% end %>
+                
+                <li class="search-out">
+                    <%= render '/layouts/search' %>
                 </li>
-
-
-                <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
-            <% else %>
-                <li><%= link_to 'Register', new_user_registration_path %></li>
-                <li><%= link_to 'Sign in', new_user_session_path %></li>
-            <% end %>
+    
             
-            <li class="search-out">
-                <%= render '/layouts/search' %>
-            </li>
-
-        
-    </ul>
+        </ul>
 </header>

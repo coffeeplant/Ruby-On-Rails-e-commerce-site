@@ -1,11 +1,13 @@
 <div id="mealsContainer">
-    <h1>Thank You<br>
-You have just placed an order <%= @order. %></h1>
+    <h1>Thank You
+        <br>
+        You have just placed an order <%= @order. %>
+    </h1>
 </div>
 
 <table id="customers">
-     <% @total = 0 %>
-    <% @orderitems.each do |id,quantity| %>
+      <% @total = 0 %>
+      <% @orderitems.each do |id,quantity| %>
       <tr>
         <% meal = Orderitem.find_by_id(id) %>
        
@@ -14,14 +16,13 @@ You have just placed an order <%= @order. %></h1>
         <td><%=number_to_currency(meal.price, :unit => "€")%></td> 
         <td><%= number_to_currency(meal.quantity * meal.price, :unit => "€") %></td>
        </tr>
-       
             <% runningTotal = (meal.quantity * meal.price)%>
-            
             <% @total += runningTotal %>
         </tr>
             <% end %>
         <tr>
             <td>Order total: &euro; <%= @total %></td>
+            
             <% shipping = 5 %>
             <% @overall = shipping + @total %>
         </tr>

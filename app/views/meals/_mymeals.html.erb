@@ -1,32 +1,72 @@
 <div class="mealsContainer">
-    <!--<#% @meal = Meal.all %>-->
-    <!--<#% @mymeals = Meal.where(current_user.prefs = @meal.category) %>-->
+
+<!--BOTH POPULATED ********************** -->
+    <% if current_user.prefs != nil && current_user.allergen != nil %>
+
+        <% catName = current_user.prefs %>
+        <% allergenName = current_user.allergen %>
+        
+        <h1>My Meals</h1>
+        <% @mymeals = Meal.where("category like ?", catName).where.not("mealAllergens like ?", allergenName)%>
     
-<% if current_user.prefs != nil && current_user.allergen != nil %>
-    <h1>My Meals</h1>
-<% end %>
-    <% catName = current_user.prefs %>
-
-    <% allergenName = current_user.allergen %>
-
-    <% @mymeals = Meal.where("category like ?", catName).where.not("mealAllergens like ?", allergenName)%>
+        <% @mymeals.each do |meal| %>
     
-    <% @mymeals.each do |meal| %>
-    <!--@count = Orderitem.all.count-->
-    <!--    @order = Order.limit(1).order(id: :desc).where(user: User.find(current_user.id))-->
-    <!--<#% @meals = Meal.where(user.prefs: Order.limit(1).order(id: :desc).where(user: User.find(current_user.id)))-->
-    <!--<#% @meals = Meal.where(User.prefs(@meals.category).where.not(meal.allergen(User.allergen))).each do |meal| %>-->
-        <div class="mealhols">
-        <h1><%= meal.mealName %></h1>
-        <%= link_to (image_tag meal.image_url, :class => "mealsholsIm"), meal %>
-        <p><%= meal.description %></p>  
-        <p>Price <%= number_to_currency(meal.price, :unit => "€") %>       
-        <p>
-            <%= link_to 'Show', meal, :class => "button", :role => "button" %>
-            <a href="/cart/<%= meal.id %>" class="button">Add To Cart</a>
-        </p>
+            <div class="mealhols">
+            <h1><%= meal.mealName %></h1>
+            <%= link_to (image_tag meal.image_url, :class => "mealsholsIm"), meal %>
+            <p><%= meal.description %></p>  
+            <p>Price <%= number_to_currency(meal.price, :unit => "€") %></p>
+            <p>
+                <%= link_to 'Show', meal, :class => "button", :role => "button" %>
+                <a href="/cart/<%= meal.id %>" class="button">Add To Cart</a>
+            </p>
+            </div>
+        <% end %>
+        
 
-            </td>
-        </div>
+<!--PREFS POPULATED ********************** -->
+    <% elsif current_user.prefs != nil && current_user.allergen == nil %>
+        <% catName = current_user.prefs %>
+
+        <!--PREFS METHOD catName: <#%=catName%>-->
+        <h1>My Meals</h1>
+        <% @mymeals = Meal.where("category like ?", catName)%>
+    
+        <% @mymeals.each do |meal| %>
+    
+            <div class="mealhols">
+            <h1><%= meal.mealName %></h1>
+            <%= link_to (image_tag meal.image_url, :class => "mealsholsIm"), meal %>
+            <p><%= meal.description %></p>  
+            <p>Price <%= number_to_currency(meal.price, :unit => "€") %></p>
+            <p>
+                <%= link_to 'Show', meal, :class => "button", :role => "button" %>
+                <a href="/cart/<%= meal.id %>" class="button">Add To Cart</a>
+            </p>
+            </div>
+        <% end %>
+<!--ALLERGENS POPULATED ********************** -->        
+    <% else current_user.prefs == nil && current_user.allergen != nil %>
+    
+        <% allergenName = current_user.allergen %>
+        <!--ALLERGY METHOD allergenName: <#%=allergenName%>-->
+        
+        <h1>My Meals</h1>
+        <% @mymeals = Meal.where.not("mealAllergens like ?", allergenName)%>
+    
+        <% @mymeals.each do |meal| %>
+    
+            <div class="mealhols">
+            <h1><%= meal.mealName %></h1>
+            <%= link_to (image_tag meal.image_url, :class => "mealsholsIm"), meal %>
+            <p><%= meal.description %></p>  
+            <p>Price <%= number_to_currency(meal.price, :unit => "€") %></p>
+            <p>
+                <%= link_to 'Show', meal, :class => "button", :role => "button" %>
+                <a href="/cart/<%= meal.id %>" class="button">Add To Cart</a>
+            </p>
+            </div>
+        <% end %>
+        
     <% end %>
 </div>

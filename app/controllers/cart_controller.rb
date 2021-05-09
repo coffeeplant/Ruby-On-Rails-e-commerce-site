@@ -20,7 +20,7 @@ class CartController < ApplicationController
       cart[id] = 1
     end
     
-  redirect_to '/meals'
+  redirect_to :action => :index
   end
   
   def clearCart
@@ -81,12 +81,7 @@ class CartController < ApplicationController
    
       @cart.each do | id, quantity |
         meal = Meal.find_by_id(id)
-        # meal = @meal
-        # meal.orderCount = meal.orderCount + 1
-        # meal.save
 
-     #@user.update_attribute(:admin, true)
-        
         @orderitem = @order.orderitems.build(
           :item_id => meal.id,
           :mealName => meal.mealName, 
@@ -107,16 +102,12 @@ class CartController < ApplicationController
 
   end
   
-
-  #redirect_to :action => :done
-  
-  def ordercomplete
-     #
-      
-    @order = Order.limit(1).order(id: :desc).where(user: User.find(current_user.id))
-     @orderitems = Orderitem.where(order_id: Order.limit(1).order(id: :desc).where(user: User.find(current_user.id)))
+  #This code was part of an attempt to create an order static page
+  # def ordercomplete
+  #   @order = Order.limit(1).order(id: :desc).where(user: User.find(current_user.id))
+  #   @orderitems = Orderitem.where(order_id: Order.limit(1).order(id: :desc).where(user: User.find(current_user.id)))
      
     #Permission.find_by(user_id: params[:user_id], project_id: params[:project_id])
-    end
+    # end
 end
 

@@ -1,3 +1,5 @@
+<% provide(:title, "Your Cart") %>
+
 <% if @cart.empty? %>
 <h1>Your cart is empty</h1>
 <% end %>
@@ -16,10 +18,11 @@
             <th>Qty</th>
             <th>Item Total</th>
         </tr>
-        <% total = 0 %> 
-        <% totalQuantity = 0 %> 
-        <% @cart.each do |id, quantity| %>
         
+        <% total = 0 %> 
+        <% totalQuantity = 0 %>
+        
+        <% @cart.each do |id, quantity| %>
         <% meal = Meal.find_by_id(id) %>
         <tr>
             <td>
@@ -27,7 +30,6 @@
                     <%= link_to (image_tag meal.image_url, :style =>"height:40px"), meal %>
                 </div>
             </td>
-            
             <td class="mealName"><%= link_to meal.mealName, meal %></td>
             <td><a class="button button_small" href="/cart/decrease/<%= meal.id %>">-</a><a class="button button_small" href="/cart/increase/<%= meal.id %>">+</a></td>
             <td><a class="button button_small" href="/cart/remove/<%= meal.id %>">Remove From Cart</a></td>
@@ -36,28 +38,20 @@
             <td class="price"><%= number_to_currency(quantity * meal.price, :unit =>"€") %></td>
         </tr>
         <tr>
-            <!--<#% testquanity = 0%>-->
             <% totalQuantity += quantity %>
             <% total += quantity * meal.price %>
             <% session[:cartTotal] = total %>
             <% session[:cartQuantity] = totalQuantity %>
         <% end %>
         </tr>
-            <!--<#% cartQuantity = 0%>-->
-            <!--<#% cartQuantity += testquantity %>-->
-            <!--<#% session[:cartQuantity] = testquanity %>-->
         <tr>
-            <!--Total: <#%= total %>-->
             <td>Grand Total: <%= number_to_currency(total, :unit =>"€") %></td>
         </tr>
-        
     </table>
-    
     <p>
         <a href="/meals" class="button">Continue Shopping</a>
         <a href="/clearcart" class="button">Empty Cart</a>
         <a href="/checkout" class="button">Checkout</a>
     </p>
-    
 
 </div>

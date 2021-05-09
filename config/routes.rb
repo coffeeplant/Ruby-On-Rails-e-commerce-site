@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     resources :orders
   end
   
-  get '/paid/:id' => 'static_pages#paid'
 
   get '/checkout' => 'cart#createOrder'
   get '/ordercomplete' => 'cart#ordercomplete'
@@ -22,13 +21,20 @@ Rails.application.routes.draw do
   
   get '/help' => 'static_pages#help'
   get '/about' => 'static_pages#about'
-  get '/admin' => 'static_pages#admin'
   get '/contact' => 'static_pages#contact'
+  
+  get '/admin' => 'static_pages#admin'
   get '/allusers' => 'static_pages#allusers'
   get '/adminorders' => 'static_pages#adminorders'
   get '/adminmeals' => 'static_pages#adminmeals'
+  get '/upgradeadmin/:id' => 'static_pages#upgradeadmin'
+  get '/downgradeadmin/:id' => 'static_pages#downgradeadmin'
+  get '/upgradestaff/:id' => 'static_pages#upgradestaff'
+  get '/downgradestaff/:id' => 'static_pages#downgradestaff'
+  
   get '/profile' => 'static_pages#profile'
   get '/prefmeat/:id' => 'static_pages#meat'
+  get '/preffish/:id' => 'static_pages#fish'
   get '/prefvegetarian/:id' => 'static_pages#vegetarian'
   get '/prefvegan/:id' => 'static_pages#vegan'
   get '/prefclear/:id' => 'static_pages#prefclear'
@@ -37,15 +43,9 @@ Rails.application.routes.draw do
   get '/allergenegg/:id' => 'static_pages#egg'
   get '/allergenclear/:id' => 'static_pages#allergenclear'
 
+  # get '/login' => 'user#login'
+  # get '/logout' => 'user#logout'
 
-
-  
-  get '/login' => 'user#login'
-  get '/logout' => 'user#logout'
-  get '/upgradeadmin/:id' => 'static_pages#upgradeadmin'
-  get '/downgradeadmin/:id' => 'static_pages#downgradeadmin'
-  get '/upgradestaff/:id' => 'static_pages#upgradestaff'
-  get '/downgradestaff/:id' => 'static_pages#downgradestaff'
   
   get '/clearcart', to: 'cart#clearCart'
   get '/cart' => 'cart#index'
